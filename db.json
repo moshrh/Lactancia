@@ -11,12 +11,12 @@
     },
     {
       "id": 2,
-      "name": "WholeMilk",
+      "name": "Whole Milk",
       "category": 1,
       "description": "Cream is separated from the non-fat milk by a centrifugal machine, then adjusted in standard proportion to create the 4 varieties of milk Canadians know and love: 3.25% (whole milk)",
       "price": 5.99,
       "volume": "4000ml",
-      "product_image": ""
+      "product_image": "../images/whole_milk.jpg"
     },
     {
       "id": 3,
@@ -106,7 +106,7 @@
       "description": "Akshayakalpa Country eggs are a perfect way to give your morning a protein-packed start and maintain energy levels through the day. Free-roaming hens in the backyard of Akshayakalpa farms feeding on organic food are raised with great care to bring you eggs free from antibiotics and growth hormones, that are non-GMO and full of natural nutrition! The hens live in a stress-free environment with ample space to roam and to manifest their natural behaviour of exploring, foraging for insects and sun-bathing– resulting in healthy, nutritious eggs.",
       "price": 9.99,
       "volume": "14pcs",
-      "product_image": ""
+      "product_image": "../images/eggs.jpg"
     },
     {
       "id": 13,
@@ -148,7 +148,7 @@
     {
       "id": 6,
       "name": "Egg",
-      "image": "https"
+      "image": "../images/eggs.jpg"
     },
     {
       "id":7,
@@ -179,6 +179,12 @@
       "id": 4,
       "name": "Alwin ",
       "email": "alwin882@gmail.com",
+      "password": "125@md"
+    },
+    {
+      "id": 5,
+      "name": "Sarpreet",
+      "email": "ssarpreet.786@gmail.com",
       "password": "125@md"
     }
   ],
