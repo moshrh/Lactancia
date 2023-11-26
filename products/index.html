@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="./style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Font+Name">
+  <title>Product Page</title>
+</head>
+
+<style>
+  .truncate-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    /* Number of lines to show */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .cart-btn-design {
+    right: 20px;
+    top: 20px;
+    position: absolute;
+    background-color: black;
+    opacity: 0.7;
+    padding: 10px;
+    border-radius: 50%;
+
+  }
+</style>
+
+<body style="background-color: rgb(249, 247, 247);">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary p-3">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="../Home/index.html">Lactancia</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active ps-5" aria-current="page" href="../Home/index.html"><i
+                class="fa-solid fa-house"></i> Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link ps-5" href="../Contact/index.html"><i class="fa-solid fa-phone"></i> Contact Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link ps-5" href="../TermsOfService/index.html"><i class="fa-solid fa-bars"></i> Terms of
+              Service</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link ps-5" href="../PrivacyPolicy/index.html"><i class="fa-solid fa-eye-slash"></i> Privacy
+              Policy</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link ps-5" href="../products/index.html"><i class="fa-solid fa-check"></i> Products</a>
+          </li>
+        </ul>
+        <span>
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link ps-5" href="#"><i class="fa-brands fa-bag-shopping"></i></a>
+            </li>
+          </ul>
+        </span>
+        <span>
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link ps-5" href="../LoginPage/index.html"><i class="fa-solid fa-user-large"></i></a>
+            </li>
+          </ul>
+        </span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="row   justify-content-center m-0">
+
+    <div class="col-8 p-5 mt-5 mb-5 " style="background: white;border-radius: 25px;">
+      <div>
+        <h5>Packed & shipped with care</h5>
+        <hr class="half-ruler">
+      </div>
+      <div class="para">
+        <p>Fresh products delivered in pristine condition to your home</p>
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="row m-0 justify-content-center ">
+    <div class="col-lg-2 col-md-3  ">
+      <div class="bg-white p-3 mt-5">
+        <p>Filter</p>
+        <div class="mt-4">
+
+
+        </div>
+
+        <div >
+           <select class="form-select " id="select-price-category" onchange="price_category_filter()">
+            <option selected value="-1">Sory By Price</option>
+            <option value="lth">Price: Lowest To Highest</option>
+            <option value="htl">Price: Highest To Lowest</option>
+          </select>
+        </div>
+        <p>Price</p>
+        <div class="form-group">
+          <label for="priceRange">Select Price Range Up To:</label>
+          <input type="range" style="width: 100%;" id="priceRange" value="0" min="0" max="100" step="1">
+        </div>
+        <p class="mt-3">Selected Price Range: <span id="selectedPriceRange">$0</span></p>
+
+        <button class="btn btn-primary" onclick="apply()">Apply</button>
+      </div>
+    </div>
+
+    <div class="col-lg-8 col-md-7 col-10  p-3">
+      <h3 class="text-center mt-3 mb-3" id="cname"></h3>
+      
+      <div class="products row pl-5 pr-5 pb-5 pt-2" id="products">
+      
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="footer">
+    <div class="socialIcon">
+      <a href="#"><i class="fa-brands fa-facebook" target="_blank"></i></a>
+      <a href="#"><i class="fa-brands fa-instagram" target="_blank"></i></a>
+      <a href="#"><i class="fa-brands fa-twitter" target="_blank"></i></a>
+      <a href="#"><i class="fa-brands fa-whatsapp" target="_blank"></i></a>
+    </div>
+    <div class="footerNav">
+      <ul>
+        <li><a href="../Contact/index.html">Contact Us</a></li>
+        <li><a href="../TermsOfService/index.html">Terms of Service</a></li>
+        <li><a href="../PrivacyPolicy/index.html">Privacy Policy</a></li>
+      </ul>
+    </div>
+    <div class="footerbottom">
+      <p>2023, Lactancia. All rights reserved</p>
+    </div>
+  </div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+    integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+    crossorigin="anonymous"></script>
+
+  <script>
+    const priceRange = document.getElementById('priceRange');
+    const selectedPriceRange = document.getElementById('selectedPriceRange');
+
+    priceRange.addEventListener('input', () => {
+      const value = priceRange.value;
+      selectedPriceRange.textContent = '$' + value;
+    });
+
+    let categry_name='';
+
+    showcategoryDropDown();
+    
+    let queryParams = new URLSearchParams(window.location.search);
+
+let id = queryParams.get("c_id");
+
+if (id == null) {
+         window.location.replace("/category/index.html")
+      }
+
+    function showcategoryDropDown() {
+
+      
+
+      const xhttp = new XMLHttpRequest();
+      xhttp.onload = function () {
+
+        var responseJsonObj = JSON.parse(this.responseText);
+        //console.log(responseJsonObj);
+        let categoryHTML = '<div class="col-12"> <select class="form-select " id="select-category" onchange="categoryfilter()" ><option selected value="-1">Select Categories</option><option  value="all">All</option>';
+        responseJsonObj.forEach(category => {
+          categoryHTML += '<option value="' + category.id + '">' + category.name + '</option>'
+          if(category.id==id){
+            categry_name=category.name;
+          }
+        });
+
+        categoryHTML += "</select></div>";
+        document.getElementById('categories').innerHTML = categoryHTML;
+        document.getElementById('cname').innerHTML=categry_name+" Products";
+      //  console.log(categoryHTML);
+
+
+      }
+      xhttp.open("GET", "http://localhost:3000/category", true);
+      xhttp.send();
+
+      showProductAccordCategory();
+
+    }
+
+
+
+
+
+    function showProductAccordCategory() {
+
+      let queryParams = new URLSearchParams(window.location.search);
+
+      let id = queryParams.get("c_id");
+      //console.log("hellow"+id);
+      if (id == null) {
+        window.location.replace("/category/index.html")
+      }
+      else {
+
+        const xhttp = new XMLHttpRequest();
+        xhttp.onload = function () {
+
+          var responseJsonObj = JSON.parse(this.responseText);
+          if(responseJsonObj.length==0){
+            window.location.replace("/category/index.html")
+          }
+          //console.log(responseJsonObj);
+          let productcategoryHTML = '';
+          responseJsonObj.forEach(product => {
+
+
+
+            productcategoryHTML += '<div class="col-lg-4 col-md-6 col-sm-12  p-0"><div class="card m-3">' +
+              ' <img src="' + product.product_image + '" style="height: 200px;object-fit: cover;"  class="card-img-top" alt="...">' +
+              ' <div class="card-body p-3" style="position: relative;">' +
+              '<div class="row"><div class="col-6"> <h5 class="card-title text-left">' + product.name + '</h5></div>' +
+              '<div class="col-6"><p class="card-text border text-right">CAD ' + product.price + '</p></div></div>' +
+              '<p class="card-text truncate-text">' + product.description + '</p> ' +
+              ' <a href="/productDetails/index.html?p_id='+product.id+'" class="btn btn-primary justify-content-center" style="width:100%">View Detail</a></div>' 
+
+
+            productcategoryHTML += '</div></div>'
+          });
+
+          document.getElementById('products').innerHTML = productcategoryHTML;
+
+          // console.log(productcategoryHTML);
+
+
+        }
+        xhttp.open("GET", "http://localhost:3000/product?category=" + id, true);
+        xhttp.send();
+
+      }
+    }
+
+
+    function categoryfilter() {
+
+      var selectElement = document.getElementById("select-category");
+
+      var selectedValue = selectElement.value;
+      if (selectedValue == -1) {
+        let queryParams = new URLSearchParams(window.location.search);
+
+        selectedValue = queryParams.get("c_id");
+       }
+      let index=0;
+      while(true){
+
+        if(selectElement.options[index].value==selectedValue){
+
+          document.getElementById('cname').innerHTML=selectElement.options[index].text+" Products";
+          break;
+        }
+        index++;
+    
+      
+      }
+     
+     
+      const xhttp = new XMLHttpRequest();
+      xhttp.onload = function () {
+
+        var responseJsonObj = JSON.parse(this.responseText);
+        //console.log(responseJsonObj);
+        let productcategoryHTML = '';
+        responseJsonObj.forEach(product => {
+
+          if (selectedValue == 'all') {
+            productcategoryHTML += '<div class="col-lg-4 col-md-6 col-sm-12  p-3"><div class="card">' +
+              ' <img src="' + product.product_image + '" style="height: 200px;object-fit: cover;"  class="card-img-top" alt="...">' +
+              ' <div class="card-body" style="position: relative;">' +
+              '<div class="row"><div class="col-6"> <h5 class="card-title text-left">' + product.name + '</h5></div>' +
+              '<div class="col-6"><p class="card-text border text-right">CAD ' + product.price + '</p></div></div>' +
+              '<p class="card-text truncate-text">' + product.description + '</p> ' +
+              ' <a href="/productDetails/index.html?p_id='+product.id+'" class="btn btn-primary justify-content-center" style="width:100%">View Detail</a></div>'
+          }
+
+          else if (product.category == selectedValue) {
+
+            productcategoryHTML += '<div class="col-lg-4 col-md-6 col-sm-12  p-3"><div class="card">' +
+              ' <img src="' + product.product_image + '" style="height: 200px;object-fit: cover;"  class="card-img-top" alt="...">' +
+              ' <div class="card-body" style="position: relative;">' +
+              '<div class="row"><div class="col-6"> <h5 class="card-title text-left">' + product.name + '</h5></div>' +
+              '<div class="col-6"><p class="card-text border text-right">CAD ' + product.price + '</p></div></div>' +
+              '<p class="card-text truncate-text">' + product.description + '</p> ' +
+              ' <a href="/productDetails/index.html?p_id='+product.id+'" class="btn btn-primary justify-content-center" style="width:100%">View Detail</a></div>' 
+
+          }
+
+          productcategoryHTML += '</div></div>'
+        });
+
+        document.getElementById('products').innerHTML = productcategoryHTML;
+
+        // console.log(productcategoryHTML);
+
+
+      }
+      xhttp.open("GET", "http://localhost:3000/product", true);
+      xhttp.send();
+
+      var order = document.getElementById("select-price-category");
+      order = order.value;
+
+if(order!=-1){
+  price_category_filter();
+}
+    }
+
+
+    function price_category_filter(){
+
+
+      var order = document.getElementById("select-price-category");
+
+       order = order.value;
+
+       if(order=="lth"){
+        order="asc"
+       }
+       else if(order==-1){
+
+       }
+       else
+       {
+        order="desc"
+       }
+      let cid;
+      var selectElement = document.getElementById("select-category");
+
+var selectedValue = selectElement.value;
+      if(selectedValue==-1){
+        let queryParams = new URLSearchParams(window.location.search);
+
+        cid = queryParams.get("c_id");  
+      }
+      else {
+        var selectElement = document.getElementById("select-category");
+
+        cid = selectElement.value;
+
+      }
+
+
+ const xhttp = new XMLHttpRequest();
+      xhttp.onload = function () {
+
+        var responseJsonObj = JSON.parse(this.responseText);
+        //console.log(responseJsonObj);
+        let productcategoryHTML = '';
+        responseJsonObj.forEach(product => {
+
+            productcategoryHTML += '<div class="col-lg-4 col-md-6 col-sm-12  p-3"><div class="card">' +
+              ' <img src="' + product.product_image + '" style="height: 200px;object-fit: cover;"  class="card-img-top" alt="...">' +
+              ' <div class="card-body" style="position: relative;">' +
+              '<div class="row"><div class="col-6"> <h5 class="card-title text-left">' + product.name + '</h5></div>' +
+              '<div class="col-6"><p class="card-text border text-right">CAD ' + product.price + '</p></div></div>' +
+              '<p class="card-text truncate-text">' + product.description + '</p> ' +
+              ' <a href="/productDetails/index.html?p_id='+product.id+'" class="btn btn-primary justify-content-center" style="width:100%">View Detail</a></div>' 
+
+          productcategoryHTML += '</div></div>'
+        });
+
+        document.getElementById('products').innerHTML = productcategoryHTML;
+
+        // console.log(productcategoryHTML);
+
+
+      }
+      if(cid=="all"){
+        xhttp.open("GET", "http://localhost:3000/product?_sort=price&_order="+order, true);
+      }
+      else{
+      xhttp.open("GET", "http://localhost:3000/product?category="+cid+"&_sort=price&_order="+order, true);
+      }
+      xhttp.send();
+
+
+
+
+
+    }
+
+
+    function apply(){
+      const priceRange = document.getElementById('priceRange');
+      const value = priceRange.value;
+
+     
+
+      var order = document.getElementById("select-price-category");
+
+       order = order.value;
+
+       if(order=="lth"){
+        order="asc"
+       }
+       else if(order==-1){
+
+       }
+       else
+       {
+        order="desc"
+       }
+      let cid;
+      var selectElement = document.getElementById("select-category");
+
+var selectedValue = selectElement.value;
+      if(selectedValue==-1){
+        let queryParams = new URLSearchParams(window.location.search);
+
+        cid = queryParams.get("c_id");  
+      }
+      else {
+        var selectElement = document.getElementById("select-category");
+
+        cid = selectElement.value;
+
+      }
+
+
+ const xhttp = new XMLHttpRequest();
+      xhttp.onload = function () {
+
+        var responseJsonObj = JSON.parse(this.responseText);
+        //console.log(responseJsonObj);
+        let productcategoryHTML = '';
+        responseJsonObj.forEach(product => {
+
+          if(product.price<=value){
+
+            productcategoryHTML += '<div class="col-lg-4 col-md-6 col-sm-12  p-3"><div class="card">' +
+              ' <img src="' + product.product_image + '" style="height: 200px;object-fit: cover;"  class="card-img-top" alt="...">' +
+              ' <div class="card-body" style="position: relative;">' +
+              '<div class="row"><div class="col-6"> <h5 class="card-title text-left">' + product.name + '</h5></div>' +
+              '<div class="col-6"><p class="card-text border text-right">CAD ' + product.price + '</p></div></div>' +
+              '<p class="card-text truncate-text">' + product.description + '</p> ' +
+              ' <a href="/productDetails/index.html?p_id='+product.id+'" class="btn btn-primary justify-content-center" style="width:100%">View Detail</a></div>' 
+          productcategoryHTML += '</div></div>'
+              }
+        });
+
+        document.getElementById('products').innerHTML = productcategoryHTML;
+
+        // console.log(productcategoryHTML);
+
+
+      }
+      if(cid=="all"){
+        xhttp.open("GET", "http://localhost:3000/product?_sort=price&_order="+order, true);
+      }
+      else{
+      xhttp.open("GET", "http://localhost:3000/product?category="+cid+"&_sort=price&_order="+order, true);
+      }
+      xhttp.send();
+
+
+
+
+
+
+
+    }
+
+  </script>
+</body>
+
+</html>

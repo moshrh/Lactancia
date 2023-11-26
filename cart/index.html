@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>productDetails</title>
+  <link rel="stylesheet" href="./style.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="../Home/index.html">Lactancia</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active ps-5" aria-current="page" href="../Home/index.html"><i
+                class="fa-solid fa-house"></i> Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link ps-5" href="../Contact/index.html"><i class="fa-solid fa-phone"></i> Contact Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link ps-5" href="../TermsOfService/index.html"><i class="fa-solid fa-bars"></i> Terms of
+              Service</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link ps-5" href="../PrivacyPolicy/index.html"><i class="fa-solid fa-eye-slash"></i> Privacy
+              Policy</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link ps-5" href="../products/index.html"><i class="fa-solid fa-check"></i> products</a>
+          </li>
+          <!--<li class="nav-item">
+            <a class="nav-link ps-5" href="../Feedback/index.html"><i class="fa-solid fa-check"></i>  Feedback</a>
+          </li>-->
+        </ul>
+        <span>
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li style="position: relative;" onclick="showCart()" class="nav-item">
+              <a class="nav-link ps-5"  href="#"><i style="font-size: 24px;" class="fa-solid fa-bag-shopping"></i></a>
+              <p style="position: absolute;top: 0;right: 0;border-radius: 50%;font-size: 12px;padding: 5px 5px 5px 5px;" id="cart-count" class="bg-danger text-white">0</p>
+            </li>
+          </ul>
+        </span>
+        <span>
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link ps-5" href="../LoginPage/index.html"><i class="fa-solid fa-user-large"></i></a>
+            </li>
+          </ul>
+        </span>
+      </div>
+    </div>
+  </nav>
+  
+
+  <div class="container p-5 bg-white" style="width: 80%; margin-top: 10vh;">
+    <h5 class="text-center">Cart</h5>
+    <div class="row mt-5  p-2" id="heading">
+
+        <div class="col-lg-2 text-center border">
+            <h5>Image</h5>
+        </div>
+        <div class="col-lg-2 text-center border">
+            <h5>Product Name</h5>
+        </div>
+        <div class="col-lg-2 text-center border">
+            <h5>Product Price</h5>
+        </div>
+        <div class="col-lg-2 text-center border">
+            <h5>Product Quantity</h5>
+        </div>
+        <div class="col-lg-2 text-center border">
+            <h5>Total</h5>
+        </div>
+
+        <div class="col-lg-2 text-center border">
+            <h5>Action</h5>
+        </div>
+        
+           
+            
+    </div>
+  <div id="cart-box">
+
+  </div>
+
+  <h5 class="text-center mt-3" id="total_amount"></h5>
+  <h5 class="text-center mt-3" id="cart-msg" style="display: none;">There is no product in the cart.</h5>
+    <div class="mt-5 text-center">
+        <button class="btn" id="btn-checkout" style="background-color:rgb(187, 39, 39);">Proceed To Checkout</button>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <div class="socialIcon">
+      <a href=""><i class="fa-brands fa-facebook"></i></a>
+      <a href=""><i class="fa-brands fa-instagram"></i></a>
+      <a href=""><i class="fa-brands fa-twitter"></i></a>
+      <a href=""><i class="fa-brands fa-whatsapp"></i></a>
+    </div>
+    <div class="footerNav">
+      <ul>
+        <li><a href="../Contact/index.html">Contact Us</a></li>
+        <li><a href="../TermsOfService/index.html">Terms of Service</a></li>
+        <li><a href="../PrivacyPolicy/index.html">Privacy Policy</a></li>
+        <!--<li><a href="../Feedback/index.html">Feedback</a></li>-->
+      </ul>
+    </div>
+    <div class="footerbottom">
+      <p>2023, Lactancia. All rights reserved</p>
+    </div>
+  </div>
+
+
+<script>
+  showToCart();
+
+  function removeCart(id) {
+    var storedData = JSON.parse(localStorage.getItem("new-cart"));
+    let newstoredData = [];
+
+    if (storedData.length == 1) {
+      document.getElementById('cart-msg').style.display = "block";
+      document.getElementById('heading').style.display = "none";
+      document.getElementById('btn-checkout').style.display = "none";
+      document.getElementById('total_amount').style.display = "none";
+    }
+
+    storedData.map((product) => {
+      if (product.id == id) {
+        // Do nothing for the product to be removed
+      } else {
+        newstoredData.push(product);
+      }
+    });
+
+    localStorage.setItem("new-cart", JSON.stringify(newstoredData));
+    showToCart();
+  }
+
+  function showToCart() {
+    var carthtml = '';
+    var total_amount = 0;
+
+    var storedData = localStorage.getItem("new-cart");
+
+    if (JSON.parse(storedData).length == 0) {
+      document.getElementById('cart-msg').style.display = "block";
+      document.getElementById('heading').style.display = "none";
+      document.getElementById('btn-checkout').style.display = "none";
+      document.getElementById('total_amount').style.display = "none";
+    }
+
+    if (storedData) {
+      var userData = JSON.parse(storedData);
+      userData.map((product) => {
+        carthtml += '<div class="row border m-0  p-2 d-flex align-items-center "><div class="col-lg-2 text-center">' +
+          ' <img src="' + product.img + '" style="width: 100px;height: 100px;object-fit: cover;" /></div>' +
+          '<div class="col-lg-2 text-center"><h5>' + product.name + '</h5></div><div class="col-lg-2 text-center"><p>CAD ' + product.price + '</p></div>' +
+          '<div class="col-lg-2 text-center"><p class="m-0"> ' + product.quantity + '</p></div>' +
+          '<div class="col-lg-2 text-center"><p class="m-0"> ' + (product.quantity * product.price) + '</p></div>' +
+          '<div class="col-lg-2 text-center "><a onclick="removeCart(' + product.id + ')" class="m-0">Remove</a></div></div>';
+
+        total_amount += product.quantity * product.price;
+      });
+    } else {}
+
+    document.getElementById('cart-box').innerHTML = carthtml;
+    document.getElementById('total_amount').innerHTML = "Total Amount " + total_amount;
+  }
+
+  // Change here: Use a loop to add event listener to all elements with the "btn" class
+  const buttonHandlers = document.getElementsByClassName("btn");
+  for (let i = 0; i < buttonHandlers.length; i++) {
+    buttonHandlers[i].addEventListener('click', () => {
+      window.location.href = "../sample/index.html";
+    });
+  }
+</script>
+
+</body>
+
+</html>

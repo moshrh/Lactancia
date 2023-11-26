@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>productDetails</title>
+  <link rel="stylesheet" href="./style.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<style>
+  .truncate-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    /* Number of lines to show */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+</style>
+
+<body>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="../Home/index.html">Lactancia</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active ps-5" aria-current="page" href="../Home/index.html"><i
+                class="fa-solid fa-house"></i> Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link ps-5" href="../Contact/index.html"><i class="fa-solid fa-phone"></i> Contact Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link ps-5" href="../TermsOfService/index.html"><i class="fa-solid fa-bars"></i> Terms of
+              Service</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link ps-5" href="../PrivacyPolicy/index.html"><i class="fa-solid fa-eye-slash"></i> Privacy
+              Policy</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link ps-5" href="../products/index.html"><i class="fa-solid fa-check"></i> products</a>
+          </li>
+          <!--<li class="nav-item">
+            <a class="nav-link ps-5" href="../Feedback/index.html"><i class="fa-solid fa-check"></i>  Feedback</a>
+          </li>-->
+        </ul>
+        <span>
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li style="position: relative;" onclick="showCart()" class="nav-item">
+              <a class="nav-link ps-5"  href="#"><i style="font-size: 24px;" class="fa-solid fa-bag-shopping"></i></a>
+              <p style="position: absolute;top: 0;right: 0;border-radius: 50%;font-size: 12px;padding: 5px 5px 5px 5px;" id="cart-count" class="bg-danger text-white">0</p>
+            </li>
+          </ul>
+        </span>
+        <span>
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link ps-5" href="../LoginPage/index.html"><i class="fa-solid fa-user-large"></i></a>
+            </li>
+          </ul>
+        </span>
+      </div>
+    </div>
+  </nav>
+  
+
+  <div class="container p-5 bg-white" style="width: 80%; margin-top: 10vh;">
+    <div class="row">
+      <div class="col-12 col-lg-5">
+        <div id="product-img">
+
+        </div>
+        
+      </div>
+
+      <div class="col-12 col-lg-7 ">
+      
+
+        <div id="product-info">
+          
+        </div>
+        
+        
+        <p>Quantity</p>
+        <div>
+          <a class="btn btn-danger border p-0 mr-5 " onclick="addQuantity()"
+            style="width: 40px;height: 40px;font-size: 24px;">+</a>
+          <p style="display: inline;" id="p_quantity" class=" ml-5 mr-5">1</p>
+          <a  class="btn border btn-danger p-0 ml-5" onclick="subQuantity()"
+            style="width: 40px;height: 40px;font-size: 24px;">-</a>
+        </div>
+
+        <label for="frequency">
+          <h5>Frequency</h5>
+        </label><br>
+        <div style="display: flex;justify-content: space-between;">
+
+          <input type="radio" name="frequency" value="everyday" onchange="run()" id="everyday"><label for="everyday">Everyday</label><br>
+          <input type="radio" name="frequency" value="onetime" onchange="run()" id="onetime"><label for="onetime">Onetime
+            Order</label><br>
+          <input type="radio" name="frequency" value="customize" onchange="run()" id="customize"><label
+            for="customize">Customize</label><br>
+          
+        </div>
+
+       
+        <div class="row" id="days" style="display: none;">
+          <h5 class="mt-3" >Please Select Days</h5>
+          <div class="col">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="sunday" id="sunday">
+              <label class="form-check-label" for="sunday">Sunday</label>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="monday" id="monday">
+              <label class="form-check-label" for="monday">Monday</label>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="tuesday" id="tuesday">
+              <label class="form-check-label" for="tuesday">Tuesday</label>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="wednesday" id="wednesday">
+              <label class="form-check-label" for="wednesday">Wednesday</label>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="thursday" id="thursday">
+              <label class="form-check-label" for="thursday">Thursday</label>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="friday" id="friday">
+              <label class="form-check-label" for="friday">Friday</label>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="saturday" id="saturday">
+              <label class="form-check-label" for="saturday">Saturday</label>
+            </div>
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: end;" class="mt-5">
+          <button class="btn btn-danger" onclick="addToCart()"> Add To Cart</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="container p-5 bg-white mt-5 mb-5" style="width: 80%;">
+
+    <h3 class="mb-5">Related Products</h3>
+
+    <div class="row" id="relatedProducts">
+
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <div class="socialIcon">
+      <a href=""><i class="fa-brands fa-facebook"></i></a>
+      <a href=""><i class="fa-brands fa-instagram"></i></a>
+      <a href=""><i class="fa-brands fa-twitter"></i></a>
+      <a href=""><i class="fa-brands fa-whatsapp"></i></a>
+    </div>
+    <div class="footerNav">
+      <ul>
+        <li><a href="../Contact/index.html">Contact Us</a></li>
+        <li><a href="../TermsOfService/index.html">Terms of Service</a></li>
+        <li><a href="../PrivacyPolicy/index.html">Privacy Policy</a></li>
+        <!--<li><a href="../Feedback/index.html">Feedback</a></li>-->
+      </ul>
+    </div>
+    <div class="footerbottom">
+      <p>2023, Lactancia. All rights reserved</p>
+    </div>
+  </div>
+
+  <div class="border" id="cart" style="background-color: white;position: fixed; height: 100vh;width: 350px;top: 0;right: -350px;">
+    <i class="fa fa-arrow-left m-5" onclick="hideCart()" aria-hidden="true"></i>
+
+    <h4 class="text-center ">Cart</h4>
+
+    <div id="cart-box">
+      <div class="p-3 mb-1"  style="position: relative;">
+        <div class="row  border">
+          <div class="col-4">
+            <img src="../images/batter.png" style="width: 100%;" />
+          </div>
+          <div class="col-8">
+            <h5>Butter</h5>
+            <p class="m-0">Price: CAD 4</p>
+            <p class="m-0">Quantity: 2</p>
+            
+          </div>
+  
+          
+        </div>
+  
+        <a class="btn border" style="position: absolute;top: 20px;right: 10px;">X</a>
+      </div>
+    </div>
+
+    <div  style="position: absolute;bottom: 10px;left: 50%;transform: translate(-50%,-50%);">
+      <a class="btn btn-danger" href="/cart/index.html">View Full Cart</a>
+    </div>
+    
+  </div>
+
+  <script>
+
+
+function hideCart(){
+  document.getElementById('cart').style.right='-350px';
+  document.getElementById('cart').style.transition='all 0.5s';
+
+}
+
+function showCart(){
+  document.getElementById('cart').style.right='0px';
+  document.getElementById('cart').style.transition='all 0.5s';
+  showToCart();
+}
+
+
+let queryParams = new URLSearchParams(window.location.search);
+let id = queryParams.get("p_id");
+
+if (id == null) {
+  window.location.replace("/category/index.html")
+}
+else{
+  const xhttp = new XMLHttpRequest();
+        xhttp.onload = function () {
+
+          var responseJsonObj = JSON.parse(this.responseText);
+          if(responseJsonObj.length==0){
+            window.location.replace("/category/index.html")
+          }
+
+          var product=responseJsonObj[0];
+          let producthtml='<h3 class="mt-2" id="p_name">'+product.name+'</h3>'+
+          '<p>'+product.description+'</p>'+
+          '<p >Volume: <span id="p_volume">'+product.volume+'</span></p>'+
+          '<p >Price: CAD<span id="p_price">'+product.price+'</span></p>'
+
+          document.getElementById('product-info').innerHTML=producthtml
+
+          let imgHtml='<img id="p_image" src="'+product.product_image+'" style="width: 100%;" />'
+          document.getElementById('product-img').innerHTML=imgHtml
+          
+          relatedProducts(product.category);
+        }
+
+        xhttp.open("GET", "http://localhost:3000/product?id=" + id, true);
+        xhttp.send();
+}
+
+
+function relatedProducts(cId){
+  const xhttp = new XMLHttpRequest();
+        xhttp.onload = function () {
+
+          var responseJsonObj = JSON.parse(this.responseText);
+
+          let productcategoryHTML = '';
+          responseJsonObj.forEach(product => {
+
+            if(product.id==id){
+
+            }
+            else{
+              productcategoryHTML += '<div class="col-lg-3 col-md-4 col-sm-4  p-0"> <div class="card m-3">' +
+              ' <img src="' + product.product_image + '" style="height: 200px;object-fit: cover;"  class="card-img-top" alt="...">' +
+              ' <div class="card-body p-3" style="position: relative;">' +
+              '<div class="row"><div class="col-6"> <h5 class="card-title text-left">' + product.name + '</h5></div>' +
+              '<div class="col-6"><p class="card-text border text-right">CAD ' + product.price + '</p></div></div>' +
+              '<p class="card-text truncate-text">' + product.description + '</p> ' +
+              ' <a href="/productDetails/index.html?p_id='+product.id+'" class="btn btn-primary justify-content-center" style="width:100%">View Detail</a></div>'
+
+
+            productcategoryHTML += '</div></div>'
+
+            }
+
+                    });
+
+          document.getElementById('relatedProducts').innerHTML = productcategoryHTML;
+
+         
+        }
+
+        xhttp.open("GET", "http://localhost:3000/product?category=" + cId, true);
+        xhttp.send();
+}
+
+    function run(){
+      var selectedfrequency = document.querySelector('input[name="frequency"]:checked');
+      if (selectedfrequency.value=="customize") {
+        document.getElementById('days').style.display="flex";
+      } else {
+        document.getElementById('days').style.display="none"; 
+      }
+    }
+
+    function addQuantity() {
+      var quantity = document.getElementById('p_quantity').innerHTML;
+
+      quantity = parseInt(quantity) + 1;
+      document.getElementById('p_quantity').innerHTML = quantity;
+    }
+    function subQuantity() {
+      var quantity = document.getElementById('p_quantity').innerHTML;
+      if (quantity == 1) {
+
+      }
+      else {
+        quantity = parseInt(quantity) - 1;
+        document.getElementById('p_quantity').innerHTML = quantity;
+      }
+    }
+ 
+
+
+
+
+    function addToCart(){
+   var p_name=document.getElementById('p_name').innerHTML;
+   var p_price=document.getElementById('p_price').innerHTML;
+   var p_volume=document.getElementById('p_volume').innerHTML;
+   var p_quantity=document.getElementById('p_quantity').innerHTML;
+   var p_img=document.getElementById('p_image').src;
+   var p_id=id;
+
+   let cart_item={
+    id:p_id,
+    name:p_name,
+    price:p_price,
+    volume:p_volume,
+    quantity:p_quantity,
+    img:p_img
+   }
+
+   var storedData = JSON.parse(localStorage.getItem("new-cart"));
+   let newstoredData=[];
+   var flag=true;
+   if(storedData){
+
+     storedData.map((product)=>{
+
+     
+      if(product.id==cart_item.id){
+        flag=false;
+        newstoredData.push( cart_item);
+      }
+      else{
+        newstoredData.push(product);
+      }
+
+      
+
+      
+
+    })
+    if(flag){
+        newstoredData.push(cart_item);
+      }
+
+  console.log(newstoredData);
+
+    localStorage.setItem("new-cart", JSON.stringify(newstoredData));
+
+   }else{
+    localStorage.setItem("new-cart", JSON.stringify([cart_item]));
+   }
+  
+
+   showCart(); 
+
+  }
+ 
+ 
+  function showToCart(){
+
+
+    var carthtml='';
+
+    var storedData = localStorage.getItem("new-cart");
+
+
+      if (storedData) {
+        var userData = JSON.parse(storedData);
+        userData.map((product)=>{
+          carthtml+='<div class="p-3 mb-1"  style="position: relative;"><div class="row  border"><div class="col-4">'+
+      ' <img src="'+product.img+'" style="width: 100%;" /></div><div class="col-8"><h5>'+product.name+'</h5>'+
+        '<p class="m-0">Price: CAD 4</p><p class="m-0">Quantity: '+product.quantity+'</p>  </div></div>'
+        })
+      }
+      else{
+
+      }
+
+      document.getElementById('cart-box').innerHTML=carthtml;
+
+
+  }
+ 
+ 
+
+ 
+ </script>
+</body>
+
+</html>
