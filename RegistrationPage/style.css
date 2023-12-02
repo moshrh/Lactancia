@@ -1,33 +1,60 @@
 body {
     background-color: rgb(249, 247, 247);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
     margin: 0;
 }
 
+
 .signup {
-    width: 20em;
-    margin-top: 2em;
+    width: 70vh;
+    margin: auto;
     padding: 40px;
-    border-radius: 12px;
-    background-color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: rgb(244, 234, 211);
+    border-radius: 20px;
+    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.1); 
+}
+
+.otp-background{
+    background-image: url('../images/otp-background.jpg');
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.otp-container-inside{
+    height: max-content;
+    background-color: rgb(244, 234, 211);
+    border-radius: 15px;
+    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.1); 
+}
+
+.otp-container{
+    height: 80vh;
+    }
+
+.background-img {
+    background-image: url('../images/signup-bgimg.jpg');
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .signup-form {
     width: 100%;
 }
 
-.title {
-    text-align: center;
-    margin-bottom: 20px;
+.input-txt{
+    background-color: rgb(235, 219, 178);
+    border-radius: 15px;
+    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.1); 
+    border-color: black 5px;
 }
 
 .home {
-    background-color: rgb(187, 39, 39);
-    align-items: center;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -38,27 +65,6 @@ body {
     cursor: pointer;
 }
 
-.home:hover {
-    background-color: rgb(154, 32, 32);
-}
-
-.text-danger {
-    color: red;
-    font-size: 14px;
-    margin-top: 5px;
-}
-
-.btn-dark {
-    background-color: rgb(33, 37, 41);
-    border: none;
-}
-
-.btn-dark:hover {
-    background-color: rgb(24, 27, 30);
-    border: none;
-}
-
-a, a:hover, a:focus, a:active {
-    text-decoration: none;
-    color: inherit;
+.inputs{
+    max-width: 60vh;
 }

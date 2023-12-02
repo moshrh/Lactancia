@@ -9,110 +9,45 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <div class="signup container d-flex justify-content-center align-items-center">
-        <form class="signup-form">
-            <div class="title">
-                <h1>Sign Up</h1>
-            </div>
+    <div class="container-fluid background-img">
+        <div class="signup container">
+            <form class="signup-form">
+                <div class="title text-center">
+                    <h1>Sign Up</h1>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="firstname" class="form-label">First Name *</label>
+                    <input type="text" class="form-control bg-body-secondary" id="firstname" placeholder="Enter your First Name" required>
+                </div>
 
-            <div class="mb-3">
-                <label for="firstname" class="form-label">First Name *</label>
-                <input type="text" class="form-control" id="firstname" placeholder="Enter your First Name" required>
-            </div>
+                <div class="mb-3">
+                    <label for="secondname" class="form-label">Second Name *</label>
+                    <input type="text" class="form-control bg-body-secondary" id="secondname" placeholder="Enter your Second Name" required>
+                </div>
 
-            <div class="mb-3">
-                <label for="secondname" class="form-label">Second Name *</label>
-                <input type="text" class="form-control" id="secondname" placeholder="Enter your Second Name" required>
-            </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email </label>
+                    <input type="email" class="form-control bg-body-secondary" id="email" placeholder="Enter your email">
+                    <div id="emailError" class="text-danger"></div>
+                </div>
 
-            <div class="mb-3">
-                <label for="email" class="form-label">Email </label>
-                <input type="email" class="form-control" id="email" placeholder="Enter your email">
-                <div id="emailError" class="text-danger"></div>
-            </div>
+                <div class="mb-3">
+                    <label for="number" class="form-label">Phone number</label>
+                    <input type="tel" class="form-control bg-body-secondary" id="number" placeholder="Enter your phone number" required>
+                    <div id="numberError" class="text-danger"></div>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password *</label>
+                    <input type="password" class="form-control bg-body-secondary" id="password" placeholder="Enter your password" required>
+                    <div id="passwordError" class="text-danger"></div>
+                </div>
 
-            <div class="mb-3">
-                <label for="number" class="form-label">Phone number</label>
-                <input type="tel" class="form-control" id="number" placeholder="Enter your phone number" required>
-                <div id="numberError" class="text-danger"></div>
-            </div>
-
-            <div class="mb-3">
-                <label for="password" class="form-label">Password *</label>
-                <input type="password" class="form-control" id="password" placeholder="Enter your password" required>
-                <div id="passwordError" class="text-danger"></div>
-            </div>
-
-            <button type="button" class="btn btn-dark home" onclick="validateAndSubmit(event)">Submit</button>
-        </form>
+                <button type="button" class="btn bsb-btn-xl btn-primary btn-lg home" onclick="validateAndSubmit(event)">Submit</button>
+            </form>
+        </div>
     </div>
-    <script>
-        function validateAndSubmit(event) {
-            event.preventDefault();
-            if (validateForm()) {
-                const firstname = document.getElementById("firstname").value;
-                const secondname = document.getElementById("secondname").value;
-                const email = document.getElementById("email").value;
-                const number = document.getElementById('number').value;
-                const password = document.getElementById("password").value;
-                const userData = {
-                    firstname: firstname,
-                    secondname: secondname,
-                    email: email,
-                    password: password,
-                    number: number
-                };
-
-                const userDataJSON = JSON.stringify(userData);
-                localStorage.setItem("userData", userDataJSON);
-
-                console.log("User data stored in local storage", userDataJSON);
-                window.location.href = './otpGen.html';
-            }
-            else {
-                setTimeout(() => {
-                    location.reload();
-                }, 1000);
-            }
-        }
-
-        function validateForm() {
-            const emailError = document.getElementById("emailError");
-            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-            const email = document.getElementById("email").value;
-
-            if (!email.match(emailPattern)) {
-                emailError.innerText = "Invalid email address";
-                return false; // Validation failed
-            } else {
-                emailError.innerText = "";
-            }
-
-            const numberError = document.getElementById("numberError");
-            const numberPattern = /^\d{10}$/;
-            const number = document.getElementById('number').value;
-
-            if (!number.match(numberPattern)) {
-                numberError.innerText = "Invalid phone number (10 digits required)";
-                return false; // Validation failed
-            } else {
-                numberError.innerText = "";
-            }
-
-            const passwordError = document.getElementById("passwordError");
-            const passwordPattern = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
-            const password = document.getElementById("password").value;
-
-            if (!password.match(passwordPattern)) {
-                passwordError.innerText = "Password must be at least 6 characters long and include at least one uppercase, one lowercase, one digit, and one special character (@$!%*?&)";
-                return false; // Validation failed
-            } else {
-                passwordError.innerText = "";
-            }
-
-            // All validations passed
-            return true;
-        }
-    </script>
+    <script src="index.js"> </script>
 </body>
 </html>

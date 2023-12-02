@@ -9,54 +9,22 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    
-    <div class="container height-100 d-flex justify-content-center align-items-center">
-        <div class="mb-3 m-4 p-4">
-            <div class="card p-2 text-center">
-                <h6>Please enter OTP<br>to verify your account</h6>
-                <div id="otp" class="inputs d-flex flex-row justify-content-center mt-2">
-                    <input class="m-2 text-center form-control rounded" type="text" id="first" maxlength="1" />
-                    <input class="m-2 text-center form-control rounded" type="text" id="second" maxlength="1" />
-                    <input class="m-2 text-center form-control rounded" type="text" id="third" maxlength="1" />
-                    <input class="m-2 text-center form-control rounded" type="text" id="fourth" maxlength="1" />
-                </div>
-                <div class="mt-4">
-                    <button class="btn btn-danger px-4 validate" onclick="validateOTP()">Validate</button>
-                </div>
+    <div class="container-fluid otp-background">
+        <div class="container otp-container  d-flex justify-content-center align-items-center">
+                <div class="otp-container-inside p-4 text-center">
+                    <h5 >Please enter the 4 Digit OTP to verify your account</h5>
+                    <div id="otp" class="inputs d-flex flex-row justify-content-center">
+                        <input class="m-2 input-txt text-center bg-body-secondary form-control rounded" type="text" id="first" maxlength="1" />
+                        <input class="m-2 input-txt text-center bg-body-secondary form-control rounded" type="text" id="second" maxlength="1" />
+                        <input class="m-2 input-txt text-center bg-body-secondary form-control rounded" type="text" id="third" maxlength="1" />
+                        <input class="m-2 input-txt text-center bg-body-secondary form-control rounded" type="text" id="fourth" maxlength="1" />
+                    </div>
+                    <div class="mt-4">
+                        <button class="btn btn bsb-btn-xl btn-primary btn-lg px-4" onclick="validateOTP()">Validate</button>
+                    </div>
             </div>
         </div>
     </div>
-        <script>
-            function generateOTP() { 
-          
-          var digits = '0123456789'; 
-          let OTP = ''; 
-          for (let i = 0; i < 4; i++ ) { 
-              OTP += digits[Math.floor(Math.random() * 10)]; 
-          } 
-          return OTP; 
-      } 
-
-      const GeneratedOTP = generateOTP();
-     
-        window.onload = ()=>{
-            alert(`The OTP is ${GeneratedOTP}`);
-        };
-
-        function validateOTP(){
-            const first = document.getElementById('first').value; console.log(first);
-            const second = document.getElementById('second').value; console.log(second);
-            const third = document.getElementById('third').value;console.log(third);
-            const fourth = document.getElementById('fourth').value;console.log(fourth);
-            if(GeneratedOTP[0]==first && GeneratedOTP[1] ==second &&GeneratedOTP[2]==third &&GeneratedOTP[3]==fourth){
-                alert("Registration Successful");
-                window.location.href = '../Home/index.html';
-            }
-            else{
-                alert(`Incorrect OTP, The OTP is ${GeneratedOTP}`);
-            }
-        }
-       
-        </script>
+        <script src="index.js"> </script>
 </body>
 </html>
