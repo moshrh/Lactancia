@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(249, 247, 247);
+    background-color: rgb(249, 247, 247) !important;
     margin: 0;
     display: flex;
     align-items: center;
@@ -7,47 +7,14 @@ body {
     height: 100vh;
 }
 
-.login {
-    width: 360px;
-    margin-top: 50px;
-    padding: 20px;
-    border-radius: 12px;
-    background-color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
+.container{
+    background-color: rgb(235, 219, 178);
+    border-radius: 20px;
+    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.1); 
+} 
 
-.title {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.otp,
-.home {
-    align-items: center;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    border-radius: 50px;
-    margin-top: 10px;
-    padding: 10px;
-    cursor: pointer;
-}
-
-.otp {
-    background-color: rgb(187, 39, 39);
-    color: white;
-}
-
-.home {
-    background-color: #343a40; /* Dark gray color */
-    color: white;
-}
-
-a, a:hover, a:focus, a:active {
-    text-decoration: none;
-    color: inherit;
-}
-
-.otp:hover, .home:hover {
-    background-color: rgb(169, 169, 169);
+img{
+    align-content: center;
+    max-height: min-content;
+    max-width: fit-content;
 }

@@ -19,9 +19,3 @@ document.getElementById("button").addEventListener("click", () => {
         alert("Authentication failed. User not found.");
     }
 });
-
-document.getElementById("submit").addEventListener("click", () => {
-
-            window.location.href = "../Home/index.html";
-});
-
